@@ -20,17 +20,17 @@ body {
     background-repeat: no-repeat;
     height: 600px;
     width: 1000px;
+    position: relative;
 }
 
 #grandma {
     background: url("/../img/sprites/mamie-right1.png") no-repeat;
     height: 77px;
     width: 50px;
-    position: relative;
-    top: 523px;
-    left: 475px;
-    animation: bounce 0.25s ease infinite alternate;
+    position: absolute;
+    bottom: 0px;
     transition: all 0.2s linear;
+    animation: bounce 0.35s ease infinite alternate;
 }
 
 @keyframes bounce{
@@ -40,8 +40,9 @@ body {
 
 #platform {
     background-color: green;
-    position: relative;
-    top : 500px;
+    position: absolute;
+    bottom: 100px;
+    left: 500px;
     height: 1vh;
     width: 12vh;
 }
