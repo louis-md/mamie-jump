@@ -1,24 +1,40 @@
 var body = document.querySelector("body");
+
 var grandma = {
+  bottom: 0,
   left: 475,
   isFacing: "",
-  altitude: 0,
+  isFalling: false,
 };
 
-var collisionDetected = false;
+var platforms = document.getElementsByClassName("platform") ;
+
+var state = {
+    collisionDetected: false,
+    jumpHeight: 240,
+    score: 0,
+}
 
 body.addEventListener("keydown", e => {
+
     if (e.key === "ArrowLeft") {
       moveGrandma("left");
-      console.log("Grandma just moved left")
-    }
+      console.log("Left arrow pressed");
+    };
+
     if (e.key === "ArrowRight") {
       moveGrandma("right");
-      console.log("Grandma just moved right")
-    }
-  });
+      console.log("Right arrow pressed");
+    };
+
+    if (e.key === " ") {
+        jump();
+        console.log("Spacebar pressed");
+    };
+});
 
 function moveGrandma(direction) {
+
     if (direction === "left") {
         grandma.left -= 20;
         grandma.isFacing = "left"
@@ -28,65 +44,127 @@ function moveGrandma(direction) {
         grandma.left += 20;
         grandma.isFacing = "right"
     }
-    renderGrandma();
+}
+
+function jump() {
+    
+    console.log("Function jump called");
+    if (!grandma.isFalling) {
+    grandma.bottom += state.jumpHeight;
+    console.log(`Grandma just jumped!`)
+    }
+}
+
+function fall() {
+
+    // console.log("Fall function called"); 
+
+    
+    if (state.collisionDetected) {
+        console.log(state.collisionDetected)
+        console.log(`Grandma's fall was stopped by an object at ${grandma.bottom}`);
+        grandma.isFalling = false;
+        return;
+    } else if (!state.collisionDetected && grandma.bottom > 0) {
+        console.log(state.collisionDetected)
+        grandma.isFalling = true;
+        grandma.bottom--
+        console.log("Oh no! Grandma is falling...");
+    } else if (grandma.bottom <= 0) {
+        console.log("Grandma reached the bottom!")
+        grandma.isFalling = false;
+        return;
+
+    }else {grandma.isFalling = false;
+        return;
+    }
 }
 
 function renderGrandma() {
+    // console.log("Rendering Grandma")
     document.getElementById("grandma").style.left  = `${grandma.left}px`;
-    document.getElementById("grandma").style.bottom = `${grandma.altitude}px`;
+    document.getElementById("grandma").style.bottom = `${grandma.bottom}px`;
 }
 
-document.getElementById("grandma").onanimationiteration = () => {
-    document.getElementById("grandma").classList.toggle("isFalling");
-};
+function detectCollision() {
+    // console.log("Running collision detection...")
+    let platformsToDetect = [...platforms];
+    for (let i in platformsToDetect) {
+        if (document.getElementById("grandma").getBoundingClientRect().x < 
+        platformsToDetect[i].getBoundingClientRect().x + 
+        platformsToDetect[i].getBoundingClientRect().width &&
+
+        document.getElementById("grandma").getBoundingClientRect().x + 
+        document.getElementById("grandma").getBoundingClientRect().width > 
+        platformsToDetect[i].getBoundingClientRect().x &&
+
+        document.getElementById("grandma").getBoundingClientRect().y < 
+        platformsToDetect[i].getBoundingClientRect().y + 
+        platformsToDetect[i].getBoundingClientRect().height &&
+
+        document.getElementById("grandma").getBoundingClientRect().y + 
+        document.getElementById("grandma").getBoundingClientRect().height > 
+        platformsToDetect[i].getBoundingClientRect().y) {
+
+            state.collisionDetected = true;
+            console.log(`Collision detected with ${platformsToDetect[i].id}`);
+            return;
+
+        } else {
+
+            console.log("No collision was found")
+            state.collisionDetected = false;
+        }
+    };
+
+}
+
+function renderEverything() {
+    detectCollision();
+    fall();
+    renderGrandma();
+    requestAnimationFrame(renderEverything);
+}
+
+// setInterval(() => {
+//     jump();
+// }, 500);
+
+requestAnimationFrame(renderEverything);
 
 
-
-setInterval(() => {
-    if (document.getElementById("grandma").getBoundingClientRect().x
-    < document.getElementById("platform").getBoundingClientRect().x + document.getElementById("platform").getBoundingClientRect().width &&
-    document.getElementById("grandma").getBoundingClientRect().x + document.getElementById("grandma").getBoundingClientRect().width
-    > document.getElementById("platform").getBoundingClientRect().x &&
-    document.getElementById("grandma").getBoundingClientRect().y
-    < document.getElementById("platform").getBoundingClientRect().y
-    + document.getElementById("platform").getBoundingClientRect().height 
-    && document.getElementById("grandma").getBoundingClientRect().y + document.getElementById("grandma").getBoundingClientRect().height 
-    > document.getElementById("platform").getBoundingClientRect().y && document.getElementById("grandma").classList.value.includes("isFalling")) {
-
-        console.log("Collision detected!");
-        grandma.altitude = document.getElementById("platform").getBoundingClientRect().y;
-        document.getElementById("grandma").onanimationend = renderGrandma();
-    } else {
-        grandma.altitude = 0;
-        document.getElementById("grandma").onanimationend = renderGrandma();
-    }
-}, 10);
-
-
-
-// //TODO:
-
-// Demain:
-// Ajout des platformes/level design
-// Score
-// Son
-
-// Jeudi :
-// Ecran d'accueil/crédits/retouche sur le design
-
-//
-// function getMarginPosition(elementID){
-//     return [document.getElementById(elementID).getBoundingClientRect().;
+// function setAltitude(){
+//     if (collisionDetected) {
+//         grandma.altitude = 600 - document.getElementById("platform1").getBoundingClientRect().y;
+//     } else grandma.altitude = 0;
 // }
 
-// requestAnimationFrame
+// document.getElementById("grandma").onanimationiteration = () => {
+//     document.getElementById("grandma").classList.toggle("isFalling");
+// };
 
-// function detectCollision() {
-//     if (`${document.getElementById("grandma").style.margin-bottom}` - ${document.getElementById("platform").style.margin-top}` ) {
-//         collisionDetected = true;
-//     }
+// function main(){
+//     document.getElementById("grandma").classList.toggle("isJumping");
+//     setAltitude();
+//     renderGrandma();
+//     collisionDetected = false;
 // }
 
-// function score() {
+// setInterval(() => {
+//     detectCollision();
+// }, 10);
 
-// }
+// main();
+
+
+
+// // //TODO:
+
+// // Demain:
+// // Ajout des platformes/level design
+// // Score
+// // Sprites
+// // Son
+
+// // Jeudi :
+// // Ecran d'accueil/crédits/retouche sur le design

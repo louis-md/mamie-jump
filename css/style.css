@@ -15,11 +15,11 @@ body {
 } */
 
 #gameWindow {
-    background: url("/../img/background.jpg");
+    background: url("/../img/city-night.gif");
     background-size: cover;
     background-repeat: no-repeat;
-    height: 600px;
-    width: 1000px;
+    height: 1447px;
+    width: 1021px;
     position: relative;
 }
 
@@ -28,21 +28,122 @@ body {
     height: 77px;
     width: 50px;
     position: absolute;
-    bottom: 0px;
-    transition: all 0.2s linear;
-    animation: bounce 0.35s ease infinite alternate;
+    transition: all 0.1s ease;
 }
 
-@keyframes bounce{
+/* .isJumping {
+    animation: bounce 0.35s ease 2 alternate;
+} */
+
+/* @keyframes bounce{
     from {transform: translateY(0%);}
     to   {transform: translateY(-200%);}
-}
+} */
 
-#platform {
+#platform1 {
     background-color: green;
     position: absolute;
-    bottom: 100px;
+    bottom: 150px;
+    left: 450px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform2 {
+    background-color: green;
+    position: absolute;
+    bottom: 150px;
+    left: 250px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform3 {
+    background-color: green;
+    position: absolute;
+    bottom: 250px;
+    left: 150px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform4 {
+    background-color: green;
+    position: absolute;
+    bottom: 600px;
+    left: 150px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform5 {
+    background-color: green;
+    position: absolute;
+    bottom: 750px;
+    left: 150px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform6 {
+    background-color: green;
+    position: absolute;
+    bottom: 900px;
+    left: 150px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform7 {
+    background-color: green;
+    position: absolute;
+    bottom: 1050px;
+    left: 150px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform8 {
+    background-color: green;
+    position: absolute;
+    bottom: 12000px;
+    left: 100px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform9 {
+    background-color: green;
+    position: absolute;
+    bottom: 150px;
+    left: 700px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform10 {
+    background-color: green;
+    position: absolute;
+    bottom: 150px;
     left: 500px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform11 {
+    background-color: green;
+    position: absolute;
+    bottom: 150px;
+    left: 600px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform12 {
+    background-color: green;
+    position: absolute;
+    bottom: 150px;
+    left: 150px;
     height: 1vh;
     width: 12vh;
 }
