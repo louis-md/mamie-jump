@@ -1,4 +1,4 @@
-var body = document.querySelector("body");
+const keyState = {};
 
 var grandma = {
   bottom: 0,
@@ -12,46 +12,36 @@ var platforms = document.getElementsByClassName("platform") ;
 var state = {
     collisionDetected: false,
     jumpHeight: 240,
-    score: 0,
+    score: 1,
 }
 
-body.addEventListener("keydown", e => {
+window.onkeydown = function(e) {
+    keyState[e.code] = true;
+};
 
-    if (e.key === "ArrowLeft") {
-      moveGrandma("left");
-      console.log("Left arrow pressed");
-    };
-
-    if (e.key === "ArrowRight") {
-      moveGrandma("right");
-      console.log("Right arrow pressed");
-    };
-
-    if (e.key === " ") {
-        jump();
-        console.log("Spacebar pressed");
-    };
-});
+window.onkeyup = function(e) {
+    keyState[e.code] = false;
+};
 
 function moveGrandma(direction) {
 
     if (direction === "left") {
-        grandma.left -= 20;
+        grandma.left -= 8;
         grandma.isFacing = "left"
     }
 
     if (direction === "right") {
-        grandma.left += 20;
+        grandma.left += 8;
         grandma.isFacing = "right"
     }
 }
 
 function jump() {
     
-    console.log("Function jump called");
+    // console.log("Function jump called");
     if (!grandma.isFalling) {
     grandma.bottom += state.jumpHeight;
-    console.log(`Grandma just jumped!`)
+    // console.log(`Grandma just jumped!`)
     }
 }
 
@@ -61,17 +51,16 @@ function fall() {
 
     
     if (state.collisionDetected) {
-        console.log(state.collisionDetected)
-        console.log(`Grandma's fall was stopped by an object at ${grandma.bottom}`);
+        // console.log(`Grandma's fall was stopped by an object at ${grandma.bottom}`);
         grandma.isFalling = false;
         return;
     } else if (!state.collisionDetected && grandma.bottom > 0) {
-        console.log(state.collisionDetected)
+        // console.log(state.collisionDetected)
         grandma.isFalling = true;
-        grandma.bottom--
-        console.log("Oh no! Grandma is falling...");
+        grandma.bottom -= 5;
+        // console.log("Oh no! Grandma is falling...");
     } else if (grandma.bottom <= 0) {
-        console.log("Grandma reached the bottom!")
+        // console.log("Grandma reached the bottom!")
         grandma.isFalling = false;
         return;
 
@@ -84,6 +73,7 @@ function renderGrandma() {
     // console.log("Rendering Grandma")
     document.getElementById("grandma").style.left  = `${grandma.left}px`;
     document.getElementById("grandma").style.bottom = `${grandma.bottom}px`;
+
 }
 
 function detectCollision() {
@@ -112,59 +102,40 @@ function detectCollision() {
 
         } else {
 
-            console.log("No collision was found")
+            // console.log("No collision was found")
             state.collisionDetected = false;
         }
     };
 
 }
 
+function renderScore() {
+    if (grandma.bottom > state.score) {
+        state.score = grandma.bottom;
+    }
+    document.getElementById("score").innerHTML = `Score: ${state.score}`;
+}
+
 function renderEverything() {
+    // if (keyState["Space"]) jump();
+    if (keyState["ArrowRight"]) moveGrandma("right");
+    if (keyState["ArrowLeft"]) moveGrandma("left");
     detectCollision();
     fall();
     renderGrandma();
+    renderScore();
     requestAnimationFrame(renderEverything);
 }
 
-// setInterval(() => {
-//     jump();
-// }, 500);
+setInterval(() => {
+    jump();
+}, 250);
 
 requestAnimationFrame(renderEverything);
 
-
-// function setAltitude(){
-//     if (collisionDetected) {
-//         grandma.altitude = 600 - document.getElementById("platform1").getBoundingClientRect().y;
-//     } else grandma.altitude = 0;
-// }
-
-// document.getElementById("grandma").onanimationiteration = () => {
-//     document.getElementById("grandma").classList.toggle("isFalling");
-// };
-
-// function main(){
-//     document.getElementById("grandma").classList.toggle("isJumping");
-//     setAltitude();
-//     renderGrandma();
-//     collisionDetected = false;
-// }
-
-// setInterval(() => {
-//     detectCollision();
-// }, 10);
-
-// main();
-
-
-
 // // //TODO:
 
-// // Demain:
-// // Ajout des platformes/level design
-// // Score
 // // Sprites
 // // Son
-
-// // Jeudi :
+// // Page scroll
 // // Ecran d'accueil/crédits/retouche sur le design

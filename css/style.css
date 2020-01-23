@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+
 body {
     margin: 0;
     padding: 0;
@@ -21,6 +23,16 @@ body {
     height: 1447px;
     width: 1021px;
     position: relative;
+}
+
+#score {
+    position: absolute;
+    height: 100px;
+    width: 250px;
+    left: 800px;
+    top : 50px;
+    font-family: 'Press Start 2P', cursive;
+
 }
 
 #grandma {
@@ -52,7 +64,7 @@ body {
 #platform2 {
     background-color: green;
     position: absolute;
-    bottom: 150px;
+    bottom: 250px;
     left: 250px;
     height: 1vh;
     width: 12vh;
@@ -61,8 +73,8 @@ body {
 #platform3 {
     background-color: green;
     position: absolute;
-    bottom: 250px;
-    left: 150px;
+    bottom: 350px;
+    left: 750px;
     height: 1vh;
     width: 12vh;
 }
@@ -70,13 +82,31 @@ body {
 #platform4 {
     background-color: green;
     position: absolute;
-    bottom: 600px;
-    left: 150px;
+    bottom: 450px;
+    left: 450px;
     height: 1vh;
     width: 12vh;
 }
 
 #platform5 {
+    background-color: green;
+    position: absolute;
+    bottom: 550px;
+    left: 50px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform6 {
+    background-color: green;
+    position: absolute;
+    bottom: 650px;
+    left: 650px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform7 {
     background-color: green;
     position: absolute;
     bottom: 750px;
@@ -85,29 +115,11 @@ body {
     width: 12vh;
 }
 
-#platform6 {
-    background-color: green;
-    position: absolute;
-    bottom: 900px;
-    left: 150px;
-    height: 1vh;
-    width: 12vh;
-}
-
-#platform7 {
-    background-color: green;
-    position: absolute;
-    bottom: 1050px;
-    left: 150px;
-    height: 1vh;
-    width: 12vh;
-}
-
 #platform8 {
     background-color: green;
     position: absolute;
-    bottom: 12000px;
-    left: 100px;
+    bottom: 850px;
+    left: 350px;
     height: 1vh;
     width: 12vh;
 }
@@ -115,7 +127,7 @@ body {
 #platform9 {
     background-color: green;
     position: absolute;
-    bottom: 150px;
+    bottom: 950px;
     left: 700px;
     height: 1vh;
     width: 12vh;
@@ -124,8 +136,8 @@ body {
 #platform10 {
     background-color: green;
     position: absolute;
-    bottom: 150px;
-    left: 500px;
+    bottom: 1050px;
+    left: 940px;
     height: 1vh;
     width: 12vh;
 }
@@ -133,8 +145,8 @@ body {
 #platform11 {
     background-color: green;
     position: absolute;
-    bottom: 150px;
-    left: 600px;
+    bottom: 1150px;
+    left: 500px;
     height: 1vh;
     width: 12vh;
 }
@@ -142,8 +154,8 @@ body {
 #platform12 {
     background-color: green;
     position: absolute;
-    bottom: 150px;
-    left: 150px;
+    bottom: 1250px;
+    left: 350px;
     height: 1vh;
     width: 12vh;
 }
