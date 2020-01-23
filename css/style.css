@@ -20,18 +20,19 @@ body {
     background: url("../img/city-night.gif");
     background-size: cover;
     background-repeat: no-repeat;
-    height: 1447px;
-    width: 1021px;
+    width: 100%;
+    height : 450vh;
     position: relative;
 }
 
 #score {
-    position: absolute;
+    position: fixed;
     height: 100px;
     width: 250px;
-    left: 800px;
+    left: 1100px;
     top : 50px;
     font-family: 'Press Start 2P', cursive;
+    color: yellow;
 
 }
 
@@ -43,20 +44,11 @@ body {
     transition: all 0.1s ease;
 }
 
-/* .isJumping {
-    animation: bounce 0.35s ease 2 alternate;
-} */
-
-/* @keyframes bounce{
-    from {transform: translateY(0%);}
-    to   {transform: translateY(-200%);}
-} */
-
 #platform1 {
     background-color: green;
     position: absolute;
     bottom: 150px;
-    left: 450px;
+    left: 650px;
     height: 1vh;
     width: 12vh;
 }
@@ -83,7 +75,7 @@ body {
     background-color: green;
     position: absolute;
     bottom: 450px;
-    left: 450px;
+    left: 500px;
     height: 1vh;
     width: 12vh;
 }
@@ -92,7 +84,7 @@ body {
     background-color: green;
     position: absolute;
     bottom: 550px;
-    left: 50px;
+    left: 200px;
     height: 1vh;
     width: 12vh;
 }
@@ -128,7 +120,7 @@ body {
     background-color: green;
     position: absolute;
     bottom: 950px;
-    left: 700px;
+    left: 675px;
     height: 1vh;
     width: 12vh;
 }
@@ -160,3 +152,191 @@ body {
     width: 12vh;
 }
 
+#platform12-1 {
+    background-color: green;
+    position: absolute;
+    bottom: 1350px;
+    left: 950px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform13 {
+    background-color: green;
+    position: absolute;
+    bottom: 1350px;
+    left: 500px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform13-1 {
+    background-color: green;
+    position: absolute;
+    bottom: 1500px;
+    left: 1050px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform14 {
+    background-color: green;
+    position: absolute;
+    bottom: 1450px;
+    left: 650px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform14-1 {
+    background-color: green;
+    position: absolute;
+    bottom: 1650px;
+    left: 1200px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform15 {
+    background-color: green;
+    position: absolute;
+    bottom: 1550px;
+    left: 350px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform16 {
+    background-color: green;
+    position: absolute;
+    bottom: 1650px;
+    left: 50px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform16-1 {
+    background-color: green;
+    position: absolute;
+    bottom: 170px;
+    left: 850px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform17 {
+    background-color: green;
+    position: absolute;
+    bottom: 1750px;
+    left: 450px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform17-1 {
+    background-color: green;
+    position: absolute;
+    bottom: 1750px;
+    left: 1000px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform18 {
+    background-color: green;
+    position: absolute;
+    bottom: 1850px;
+    left: 660px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform19 {
+    background-color: green;
+    position: absolute;
+    bottom: 1950px;
+    left: 250px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform20 {
+    background-color: green;
+    position: absolute;
+    bottom: 2050px;
+    left: 850px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform21 {
+    background-color: green;
+    position: absolute;
+    bottom: 2150px;
+    left: 1000px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform21-1 {
+    background-color: green;
+    position: absolute;
+    bottom: 2200px;
+    left: 1200px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform22 {
+    background-color: green;
+    position: absolute;
+    bottom: 2250px;
+    left: 200px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform22-1 {
+    background-color: green;
+    position: absolute;
+    bottom: 2300px;
+    left: 450px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform22-2 {
+    background-color: green;
+    position: absolute;
+    bottom: 2350px;
+    left: 850px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform23 {
+    background-color: green;
+    position: absolute;
+    bottom: 2450px;
+    left: 350px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform24 {
+    background-color: green;
+    position: absolute;
+    bottom: 2600px;
+    left: 700px;
+    height: 1vh;
+    width: 12vh;
+}
+
+#platform25 {
+    background-color: green;
+    position: absolute;
+    bottom: 2700px;
+    left: 600px;
+    height: 1vh;
+    width: 12vh;
+}
