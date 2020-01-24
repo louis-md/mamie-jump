@@ -1,13 +1,16 @@
 const keyState = {};
 const platforms = document.getElementsByClassName("platform");
 const grandmaDOM = document.getElementById("grandma");
-
 var platformSound = new Audio('../sound/platform.wav');
-var theme = new Audio('../sound/song.mp3');
 var level = new Audio('../sound/level.mp3');
 var win = new Audio('../sound/you-win.mp3');
 var gameOver = new Audio('../sound/game-over-sound-effect.mp3');
 var love = new Audio('../sound/what-is-love.mp3');
+
+level.win = 0.4;
+level.gameOver = 0.3; 
+level.volume = 0.05;
+level.play();
 
 const grandma = {
   bottom: 0,
@@ -64,7 +67,7 @@ function renderGrandma() {
     if (grandma.isFacing === "right") {
         grandmaDOM.style.background = "url('./img/sprites/mamie-right.png')"
     } else if (grandma.isFacing === "left") {
-        grandmaDOM.style.backgroundImage = "url('./img/sprites/mamie-left.png')"
+        grandmaDOM.style.background = "url('./img/sprites/mamie-left.png')"
     }
     grandmaDOM.style.left  = `${grandma.left}px`;
     grandmaDOM.style.bottom = `${grandma.bottom}px`;
@@ -110,9 +113,9 @@ function endGame() {
         window.scrollTo(0, 2500);
         grandma.bottom = 0;
         renderGrandma();
-        if(!alert(`You lost! Your score is ${state.score}. Not bad for a grandma! \nClick "Ok" to try again.`)){
-            window.location.reload();
-        }
+        window.location.reload();
+        if(!alert(`You lost! Your score is ${state.score - 242}. Not bad for a grandma! \nClick "Ok" to try again.`)){
+        }  
     }
     if (grandma.bottom > 2900) {
         win.play();
@@ -120,7 +123,7 @@ function endGame() {
         grandmaDOM.getBoundingClientRect().x = 600;
         renderGrandma();
         window.location.href = "./index.html";
-        alert(`You win! Your score is ${state.score}. Congrats!!`)
+        alert(`You win! Your score is ${state.score - 242}. Congrats!!`) 
     }
 }
 
@@ -132,9 +135,12 @@ function renderEverything() {
     renderGrandma();
     renderScore();
     scrollScreen();
-    endGame();
     requestAnimationFrame(renderEverything);
 }
+
+setInterval(() => {
+    endGame();
+}, 100);
 
 setInterval(() => {
     jump();
