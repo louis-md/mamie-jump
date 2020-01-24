@@ -9,7 +9,7 @@ var love = new Audio('../sound/what-is-love.mp3');
 
 level.win = 0.4;
 level.gameOver = 0.3; 
-level.volume = 0.05;
+level.volume = 0.02;
 level.play();
 
 const grandma = {
