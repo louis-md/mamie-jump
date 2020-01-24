@@ -7,8 +7,8 @@ var win = new Audio('../sound/you-win.mp3');
 var gameOver = new Audio('../sound/game-over-sound-effect.mp3');
 var love = new Audio('../sound/what-is-love.mp3');
 
-level.win = 0.4;
-level.gameOver = 0.3; 
+win.volume = 0.5;
+gameOver.volume = 0.6; 
 level.volume = 0.02;
 level.play();
 
@@ -110,18 +110,14 @@ function scrollScreen() {
 function endGame() {
     if (grandmaDOM.getBoundingClientRect().y > 900) {
         gameOver.play();
-        window.scrollTo(0, 2500);
-        grandma.bottom = 0;
-        renderGrandma();
+        window.scrollTo(0, 3000);
         window.location.reload();
         if(!alert(`You lost! Your score is ${state.score - 242}. Not bad for a grandma! \nClick "Ok" to try again.`)){
         }  
     }
     if (grandma.bottom > 2900) {
         win.play();
-        grandma.bottom = 3200;
         grandmaDOM.getBoundingClientRect().x = 600;
-        renderGrandma();
         window.location.href = "./index.html";
         alert(`You win! Your score is ${state.score - 242}. Congrats!!`) 
     }
