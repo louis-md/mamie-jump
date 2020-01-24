@@ -1,38 +1,38 @@
 const keyState = {};
+const platforms = document.getElementsByClassName("platform");
+const grandmaDOM = document.getElementById("grandma");
 
-var grandma = {
+var platformSound = new Audio('../sound/platform.wav');
+var theme = new Audio('../sound/song.mp3');
+var level = new Audio('../sound/level.mp3');
+var win = new Audio('../sound/you-win.mp3');
+var gameOver = new Audio('../sound/game-over-sound-effect.mp3');
+var love = new Audio('../sound/what-is-love.mp3');
+
+const grandma = {
   bottom: 0,
   left: 475,
   isFacing: "",
-  isFalling: false,
-};
+  isFalling: false,};
 
-var platforms = document.getElementsByClassName("platform") ;
-
-var state = {
+const state = {
     collisionDetected: false,
     jumpHeight: 250,
     score: 1,
-    lost: true,
-}
-
-window.scrollTo(0, 1447)
+    lost: true,}
 
 window.onkeydown = function(e) {
     keyState[e.code] = true;
 };
-
 window.onkeyup = function(e) {
     keyState[e.code] = false;
 };
 
 function moveGrandma(direction) {
-
     if (direction === "left") {
         grandma.left -= 10;
         grandma.isFacing = "left"
     }
-
     if (direction === "right") {
         grandma.left += 10;
         grandma.isFacing = "right"
@@ -40,81 +40,61 @@ function moveGrandma(direction) {
 }
 
 function jump() {
-    
-    // console.log("Function jump called");
     if (!grandma.isFalling) {
     grandma.bottom += state.jumpHeight;
-    // console.log(`Grandma just jumped!`)
     }
 }
 
-function fall() {
-
-    // console.log("Fall function called"); 
-    
+function fall() {    
     if (state.collisionDetected) {
-        // console.log(`Grandma's fall was stopped by an object at ${grandma.bottom}`);
         grandma.isFalling = false;
         return;
     } else if (!state.collisionDetected && grandma.bottom > 0) {
-        // console.log(state.collisionDetected)
         grandma.isFalling = true;
         grandma.bottom -= 8;
-        // console.log("Oh no! Grandma is falling...");
     } else if (grandma.bottom <= 0) {
-        // console.log("Grandma reached the bottom!")
         grandma.isFalling = false;
         return;
-
     }else {grandma.isFalling = false;
         return;
     }
 }
 
 function renderGrandma() {
-    // console.log("Rendering Grandma")
-    document.getElementById("grandma").style.left  = `${grandma.left}px`;
-    document.getElementById("grandma").style.bottom = `${grandma.bottom}px`;
-
+    if (grandma.isFacing === "right") {
+        grandmaDOM.style.background = "url('./img/sprites/mamie-right.png')"
+    } else if (grandma.isFacing === "left") {
+        grandmaDOM.style.backgroundImage = "url('./img/sprites/mamie-left.png')"
+    }
+    grandmaDOM.style.left  = `${grandma.left}px`;
+    grandmaDOM.style.bottom = `${grandma.bottom}px`;
 }
 
 function detectCollision() {
-    // console.log("Running collision detection...")
     let platformsToDetect = [...platforms];
     for (let i in platformsToDetect) {
-        if (document.getElementById("grandma").getBoundingClientRect().x < 
+        if (grandmaDOM.getBoundingClientRect().x < 
         platformsToDetect[i].getBoundingClientRect().x + 
         platformsToDetect[i].getBoundingClientRect().width &&
-
-        document.getElementById("grandma").getBoundingClientRect().x + 
-        document.getElementById("grandma").getBoundingClientRect().width > 
+        grandmaDOM.getBoundingClientRect().x + 
+        grandmaDOM.getBoundingClientRect().width > 
         platformsToDetect[i].getBoundingClientRect().x &&
-
-        document.getElementById("grandma").getBoundingClientRect().y < 
+        grandmaDOM.getBoundingClientRect().y < 
         platformsToDetect[i].getBoundingClientRect().y + 
         platformsToDetect[i].getBoundingClientRect().height &&
-
-        document.getElementById("grandma").getBoundingClientRect().y + 
-        document.getElementById("grandma").getBoundingClientRect().height > 
+        grandmaDOM.getBoundingClientRect().y + 
+        grandmaDOM.getBoundingClientRect().height > 
         platformsToDetect[i].getBoundingClientRect().y) {
-
             state.collisionDetected = true;
-            console.log(`Collision detected with ${platformsToDetect[i].id}`);
+            platformSound.play();
             return;
-
-        } else {
-
-            // console.log("No collision was found")
-            state.collisionDetected = false;
-        }
+        } else state.collisionDetected = false;
     };
-
 }
 
 function renderScore() {
     if (grandma.bottom > state.score) {
-        state.score = grandma.bottom;
-    }
+        state.score = grandma.bottom;}
     document.getElementById("score").innerHTML = `Score: ${state.score - 242}`;
 }
 
@@ -125,25 +105,26 @@ function scrollScreen() {
 }
 
 function endGame() {
-    if (document.getElementById("grandma").getBoundingClientRect().y > 900) {
+    if (grandmaDOM.getBoundingClientRect().y > 900) {
+        gameOver.play();
         window.scrollTo(0, 2500);
         grandma.bottom = 0;
         renderGrandma();
-        if(!alert(`You lost! Your score is ${state.score}. Not bad for a grandma! \nClick "Ok" to play again.`)){
-        window.location.reload();}
+        if(!alert(`You lost! Your score is ${state.score}. Not bad for a grandma! \nClick "Ok" to try again.`)){
+            window.location.reload();
+        }
     }
-
-    if (grandma.bottom > 3000) {
+    if (grandma.bottom > 2900) {
+        win.play();
         grandma.bottom = 3200;
-        document.getElementById("grandma").getBoundingClientRect().x = 600;
+        grandmaDOM.getBoundingClientRect().x = 600;
         renderGrandma();
-        if(!alert(`You win! Your score is ${state.score}. Congrats!!`)){
-            window.location.reload();}
+        window.location.href = "./index.html";
+        alert(`You win! Your score is ${state.score}. Congrats!!`)
     }
 }
 
 function renderEverything() {
-    // if (keyState["Space"]) jump();
     if (keyState["ArrowRight"]) moveGrandma("right");
     if (keyState["ArrowLeft"]) moveGrandma("left");
     detectCollision();
@@ -164,10 +145,3 @@ setInterval(() => {
 })();
 
 requestAnimationFrame(renderEverything);
-
-// // //TODO:
-
-// // Sprites
-// // Son
-// // Page scroll
-// // Ecran d'accueil/crédits/retouche sur le design

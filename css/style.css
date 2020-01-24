@@ -1,20 +1,63 @@
 @import url('https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Bangers&display=swap');
 
 body {
     margin: 0;
     padding: 0;
 }
 
-/* nav {
-    position: fixed;
-    top: 0;
+#background {
+    background: url("../img/city.gif");
+    background-size: cover;
+    background-repeat: no-repeat;
+    top: -450px;
     width: 100%;
-    height: 90px;
-    background-color: white;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-} */
+    height: 300vh;
+    position: relative;
+    z-index: 1;
+}
+
+#start {
+    top: 200px;
+    left: 550px;
+    width: 235px;
+    height: 185px;
+    position: relative;
+    z-index: 2;
+    animation: float 5s ease-in-out infinite;
+}
+
+@keyframes float {
+	0% {
+		transform: translatey(0px);
+	}
+	50% {
+		transform: translatey(-15px);
+	}
+	100% {
+		transform: translatey(0px);
+	}
+}
+
+h1 {
+    position: relative;
+    top: 300px;
+    left: 250px;
+    font-family: 'Bangers', cursive;
+    font-size: 200px;
+    color:white;
+    z-index: 2;
+}
+
+p {
+    position: relative;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 20px;
+    color : white;
+    top: 500px;
+    left: 280px;
+    z-index: 2;
+}
 
 #gameWindow {
     background: url("../img/city-night.gif");
@@ -33,15 +76,39 @@ body {
     top : 50px;
     font-family: 'Press Start 2P', cursive;
     color: yellow;
+}
 
+#menu {
+    position: fixed;
+    height: 100px;
+    width: 250px;
+    left: 150px;
+    top : 50px;
+    font-family: 'Press Start 2P', cursive;
+    color: yellow;
 }
 
 #grandma {
-    background: url("../img/sprites/mamie-right1.png") no-repeat;
-    height: 77px;
-    width: 50px;
+    height: 79px;
+    width: 46px;
+    background: url('../img/sprites/mamie-front.png') 0px 0px;
     position: absolute;
     transition: all 0.1s ease;
+}
+
+#image {
+    height: 79px;
+    width: 49px;
+    background: url('../img/sprites/mamie-right.png') 0px 0px;
+}
+
+#glasses {
+    bottom: 2750px;
+    left: 605px;
+    height: 60px;
+    width: 60px;
+    position: absolute;
+    animation: float 5s ease-in-out infinite;
 }
 
 #platform1 {
@@ -326,7 +393,7 @@ body {
 #platform24 {
     background-color: green;
     position: absolute;
-    bottom: 2600px;
+    bottom: 2575px;
     left: 700px;
     height: 1vh;
     width: 12vh;
