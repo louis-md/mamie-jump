@@ -1,16 +1,16 @@
 const keyState = {};
 const platforms = document.getElementsByClassName("platform");
 const grandmaDOM = document.getElementById("grandma");
-var platformSound = new Audio('../sound/platform.wav');
-var level = new Audio('../sound/level.mp3');
-var win = new Audio('../sound/you-win.mp3');
-var gameOver = new Audio('../sound/game-over-sound-effect.mp3');
-var love = new Audio('../sound/what-is-love.mp3');
+var platformSound = new Audio('./sound/platform.wav');
+var level = new Audio('./sound/level.mp3');
+var win = new Audio('./sound/you-win.mp3');
+var gameOver = new Audio('./sound/game-over-sound-effect.mp3');
+var love = new Audio('./sound/what-is-love.mp3');
 
-win.volume = 0.5;
-gameOver.volume = 0.6; 
+win.volume = 0.2;
+gameOver.volume = 0.3; 
 level.volume = 0.02;
-level.play();
+platformSound.volume = 0.2;
 
 const grandma = {
   bottom: 0,
@@ -20,11 +20,12 @@ const grandma = {
 
 const state = {
     collisionDetected: false,
-    jumpHeight: 250,
+    jumpHeight: 450,
     score: 1,
     lost: true,}
 
 window.onkeydown = function(e) {
+    level.play();
     keyState[e.code] = true;
 };
 window.onkeyup = function(e) {
